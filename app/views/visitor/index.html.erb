@@ -1,0 +1,33 @@
+<div class="container">
+  <h1 class="text-center mt-4">Teams and Players</h1>
+
+  <% @teams.each do |team| %>
+    <div class="card mt-4">
+      <div class="card-header">
+        <h2><%= team.name %> (<%= team.country %>)</h2>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Nationality</th>
+              <th>Birth Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% team.players.each do |player| %>
+              <tr>
+                <td><%= player.name %></td>
+                <td><%= player.position %></td>
+                <td><%= player.nationality %></td>
+                <td><%= player.birth_date %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

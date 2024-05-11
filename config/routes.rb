@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # get 'visitor/index'
+  root "visitor#index"
+
   namespace :admin do
     get '/', to: 'dashboard#index'
     resources :teams
