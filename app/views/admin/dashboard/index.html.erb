@@ -1,2 +1,7 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<h1>Admin Dashboard</h1>
+<p>Welcome, <%= current_admin.email %>!</p>
+
+<ul>
+  <li><%= link_to "Manage Teams", admin_teams_path %></li>
+  <li><%= link_to "Manage Players", admin_players_path %></li>
+</ul>

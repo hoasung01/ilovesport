@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :admin do
     get '/', to: 'dashboard#index'
+    resources :teams
+    resources :players
   end
 
   devise_for :admins
