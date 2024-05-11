@@ -1,7 +1,26 @@
-<h1>Admin Dashboard</h1>
-<p>Welcome, <%= current_admin.email %>!</p>
+<div class="container">
+  <h1 class="text-center mt-4">Admin Dashboard</h1>
+  <p class="text-center">Welcome, <%= current_admin.email %>!</p>
 
-<ul>
-  <li><%= link_to "Manage Teams", admin_teams_path %></li>
-  <li><%= link_to "Manage Players", admin_players_path %></li>
-</ul>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Manage Teams</h5>
+          <p class="card-text">Create, edit, and delete teams.</p>
+          <%= link_to "Teams", admin_teams_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Manage Players</h5>
+          <p class="card-text">Add, edit, and remove players.</p>
+          <%= link_to "Players", admin_players_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
