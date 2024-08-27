@@ -68,7 +68,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "sassc-rails"
-gem "bootstrap"
-
-
+gem "bootstrap", "~> 5.1.3"
