@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # get 'visitor/index'
   root "visitor#index"
 
   namespace :admin do
