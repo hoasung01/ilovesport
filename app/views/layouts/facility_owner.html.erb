@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>IloveSport - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admin">I love sport</a>
+        <% if facility_owner_signed_in? %>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <%= button_to "Sign out", destroy_facility_owner_session_path, method: :delete, class: "btn btn-outline-light" %>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <div class="row">
+        <% if facility_owner_signed_in? %>
+          <nav class="col-md-2 col-sm-4 bg-light sidebar">
+            <div class="sidebar-sticky pt-3">
+              <ul class="nav flex-column nav-pills mt-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <%= yield %>
+              </div>
+            </div>
+          </main>
+        <% else %>
+          <main class="col-md-6 offset-md-3 mt-5">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="text-center">Facility Owner Login</h2>
+              </div>
+              <div class="card-body">
+                <%= yield %>
+              </div>
+            </div>
+          </main>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>
