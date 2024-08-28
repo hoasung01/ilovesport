@@ -1,0 +1,29 @@
+<%= form_with(model: [:admin, @sport], local: true, class: "mb-4") do |form| %>
+  <% if @sport.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(@sport.errors.count, "error") %> prohibited this sport from being saved:</h4>
+      <ul class="mb-0">
+        <% @sport.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <div class="col-md-2">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control #{@sport.errors[:name].any? ? "is-invalid" : ''}" %>
+      <% if @sport.errors[:name].any? %>
+        <div class="invalid-feedback">
+          <%= @sport.errors[:name].join(', ') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Cancel', admin_sports_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
