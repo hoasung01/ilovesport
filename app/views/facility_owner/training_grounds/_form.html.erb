@@ -1,0 +1,62 @@
+<%= form_with(model: [:facility_owner, @training_ground], local: true, class: "mb-4") do |form| %>
+  <% if @training_ground.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(@training_ground.errors.count, "error") %> prohibited this training_ground from being saved:</h4>
+      <ul class="mb-0">
+        <% @training_ground.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <div class="col-md-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control #{@training_ground.errors[:name].any? ? "is-invalid" : ''}" %>
+      <% if @training_ground.errors[:name].any? %>
+        <div class="invalid-feedback">
+          <%= @training_ground.errors[:name].join(', ') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-md-3">
+      <%= form.label :sport_id, class: "form-label" %>
+      <%= form.select :sport_id,
+                      options_from_collection_for_select(Sport.all, :id, :name, form.object.sport_id),
+                      { include_blank: "Select a sport" },
+                      { class: "form-select" } %>
+    </div>
+  </div>
+
+  <%= form.fields_for :location do |location_form| %>
+    <div class="mb-3">
+      <div class="col-md-3">
+        <%= location_form.label :address, class: "form-label" %>
+        <%= location_form.text_field :address, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="col-md-3">
+        <%= location_form.label :city, class: "form-label" %>
+        <%= location_form.text_field :city, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <div class="col-md-3">
+        <%= location_form.label :country, class: "form-label" %>
+        <%= location_form.text_field :country, class: "form-control" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Cancel', facility_owner_training_grounds_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

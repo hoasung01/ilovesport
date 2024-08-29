@@ -1,0 +1,38 @@
+<section id="facility_owner-training_ground__index">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-4">Training Grounds</h1>
+    </div>
+    <div class="col-auto">
+      <%= link_to 'New Training Ground', new_facility_owner_training_ground_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Name</th>
+          <th>Sport</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @training_grounds.each do |training_ground| %>
+          <tr>
+            <td><%= training_ground.name %></td>
+            <td><%= training_ground.sport.name %></td>
+            <td class="text-center">
+              <%= link_to 'Show', facility_owner_training_ground_path(training_ground), class: 'btn btn-sm btn-info' %>
+              <%= link_to 'Edit', edit_facility_owner_training_ground_path(training_ground), class: 'btn btn-sm btn-warning' %>
+              <%= button_to 'Destroy', facility_owner_training_ground_path(training_ground),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: 'btn btn-sm btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
