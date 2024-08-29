@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_29_142234) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_29_142520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,4 +54,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_29_142234) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "training_grounds", force: :cascade do |t|
+    t.string "name"
+    t.bigint "facility_owner_id", null: false
+    t.bigint "sport_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["facility_owner_id"], name: "index_training_grounds_on_facility_owner_id"
+    t.index ["location_id"], name: "index_training_grounds_on_location_id"
+    t.index ["sport_id"], name: "index_training_grounds_on_sport_id"
+  end
+
+  add_foreign_key "training_grounds", "facility_owners"
+  add_foreign_key "training_grounds", "locations"
+  add_foreign_key "training_grounds", "sports"
 end
