@@ -1,17 +1,40 @@
 <section id="admin-sport__index">
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="display-4">Facility Owners</h1>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead class="thead-dark">
         <tr>
           <th>Name</th>
-          <th class="text-center">Actions</th>
+          <th>Training Grounds</th>
+          <th>Location</th>
+          <th>Sport</th>
         </tr>
       </thead>
       <tbody>
         <% @facility_owners.each do |facility_owner| %>
-          <tr>
-            <td><%= facility_owner.email %></td>
-          </tr>
+          <% if facility_owner.training_grounds.any? %>
+            <% facility_owner.training_grounds.each do |training_ground| %>
+              <tr>
+                <td><%= facility_owner.email %></td>
+                <td><%= training_ground.name %></td>
+                <td>
+                  <%= training_ground.location.address %><br>
+                  <%= training_ground.location.city %>, <%= training_ground.location.country %>
+                </td>
+                <td><%= training_ground.sport.name %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td><%= facility_owner.email %></td>
+              <td colspan="3">No training grounds</td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
