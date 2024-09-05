@@ -1,0 +1,41 @@
+<%= form_with(model: [:facility_owner, @player], local: true, class: "mb-4") do |form| %>
+  <% if @player.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= pluralize(@player.errors.count, "error") %> prohibited this training_ground from being saved:</h4>
+      <ul class="mb-0">
+        <% @player.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <div class="col-md-3">
+      <%= form.label :name, class: "form-label" %>
+      <%= form.text_field :name, class: "form-control #{@player.errors[:name].any? ? "is-invalid" : ''}" %>
+      <% if @player.errors[:name].any? %>
+        <div class="invalid-feedback">
+          <%= @player.errors[:name].join(', ') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="col-md-3">
+      <%= form.label :mobile_number, class: "form-label" %>
+      <%= form.text_field :mobile_number, class: "form-control #{@player.errors[:mobile_number].any? ? "is-invalid" : ''}" %>
+      <% if @player.errors[:mobile_number].any? %>
+        <div class="invalid-feedback">
+          <%= @player.errors[:mobile_number].join(', ') %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to 'Cancel', facility_owner_players_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>
