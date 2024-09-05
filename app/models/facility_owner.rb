@@ -5,4 +5,5 @@ class FacilityOwner < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :training_grounds
+  has_many :players
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :facility_owner do
     get '/', to: 'dashboard#index'
     resources :training_grounds
+    resources :players
   end
 
   devise_for :admins

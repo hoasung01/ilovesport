@@ -2,14 +2,10 @@
 
 one:
   name: MyString
-  position: MyString
-  team: one
-  nationality: MyString
-  birth_date: 2024-05-01
+  mobile_number: MyString
+  facility_owner: one
 
 two:
   name: MyString
-  position: MyString
-  team: two
-  nationality: MyString
-  birth_date: 2024-05-01
+  mobile_number: MyString
+  facility_owner: two
