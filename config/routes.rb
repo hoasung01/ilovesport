@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
   root "visitor#index"
+  get "visitor", to: "visitor#index", as: "visitor_index"
 
   namespace :admin do
-    get '/', to: 'dashboard#index'
+    get "/", to: "dashboard#index"
     resources :sports
     resources :facility_owners
   end
 
   namespace :facility_owner do
-    get '/', to: 'dashboard#index'
+    get "/", to: "dashboard#index"
     resources :training_grounds
     resources :players
   end

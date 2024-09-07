@@ -12,39 +12,22 @@
     <h2 class="mb-4 text-center">Search Training Grounds</h2>
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <form class="mb-4">
+        <form class="mb-4" action="<%= visitor_index_path %>" method="get">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter location or training ground name" aria-label="Search training grounds">
+            <input type="text" class="form-control" name="search" placeholder="Enter location or training ground name" aria-label="Search training grounds">
             <button class="btn btn-primary" type="submit">Search</button>
           </div>
+          <div class="row g-3 mt-2">
+            <div class="col-md-4">
+              <select class="form-select" name="sport_type" aria-label="Sport type">
+                <option value="" selected>All Sports</option>
+                <% Sport.all.each do |sport| %>
+                  <option value="<%= sport.id %>"><%= sport.name %></option>
+                <% end %>
+              </select>
+            </div>
+          </div>
         </form>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <select class="form-select" aria-label="Sport type">
-              <option selected>Sport Type</option>
-              <option value="1">Football</option>
-              <option value="2">Basketball</option>
-              <option value="3">Tennis</option>
-              <option value="4">Swimming</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <select class="form-select" aria-label="Availability">
-              <option selected>Availability</option>
-              <option value="1">Today</option>
-              <option value="2">This Week</option>
-              <option value="3">This Month</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <select class="form-select" aria-label="Price range">
-              <option selected>Price Range</option>
-              <option value="1">$0 - $50</option>
-              <option value="2">$51 - $100</option>
-              <option value="3">$101+</option>
-            </select>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -69,7 +52,6 @@
               <div class="d-flex justify-content-between align-items-center mt-auto">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-body-secondary">Available</small>
               </div>
