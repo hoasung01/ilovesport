@@ -69,6 +69,7 @@
               <div class="d-flex justify-content-between align-items-center mt-auto">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-body-secondary">Available</small>
               </div>
@@ -77,5 +78,13 @@
         </div>
       <% end %>
     </div>
+
+    <!-- Pagination Links -->
+    <div class="mt-4">
+      <nav aria-label="Page navigation">
+        <%= paginate @training_grounds %>
+      </nav>
+    </div>
   </div>
 </div>
+
