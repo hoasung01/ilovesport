@@ -1,0 +1,41 @@
+<section id="facility_owner-bookings__index">
+  <div class="row">
+    <div class="col">
+      <h1 class="display-4">Bookings</h1>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>Player Name</th>
+          <th>Training Ground</th>
+          <th>Sport</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @bookings.each do |booking| %>
+          <tr>
+            <td><%= booking.player_name %></td>
+            <td><%= booking.training_ground.name %></td>
+            <td><%= booking.training_ground.sport.name %></td>
+            <td><%= booking.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <td><%= booking.end_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <td class="text-center">
+              <%#= link_to 'Show', facility_owner_training_ground_booking_path(booking.training_ground, booking), class: 'btn btn-sm btn-info' %>
+              <%#= link_to 'Edit', edit_facility_owner_training_ground_booking_path(booking.training_ground, booking), class: 'btn btn-sm btn-warning' %>
+              <%#= button_to 'Destroy', facility_owner_training_ground_booking_path(booking.training_ground, booking),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: 'btn btn-sm btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>
