@@ -5,14 +5,57 @@
       <p class="lead">Sport: <%= @training_ground.sport.name if @training_ground.sport %></p>
       <p><strong>Location:</strong> <%= "#{@training_ground.location.address}, #{@training_ground.location.city}, #{@training_ground.location.country}" if @training_ground.location %></p>
       <p><strong>Owned by:</strong> <%= @training_ground.facility_owner.email %></p>
-      <p class="mt-4"><strong>Bookings:</strong></p>
+
       <ul class="list-group">
         <% @training_ground.bookings.each do |booking| %>
           <li class="list-group-item">
-            <%= booking.player_name %>: <%= booking.start_time.strftime('%F %T') %> to <%= booking.end_time.strftime('%F %T') %>
+            <%= booking.player_name %>:
+            <%= booking.start_time.present? ? booking.start_time.strftime('%F %T') : 'Not set' %>
+            to
+            <%= booking.end_time.present? ? booking.end_time.strftime('%F %T') : 'Not set' %>
           </li>
         <% end %>
       </ul>
+
+      <h3 class="mt-5">Book this Ground</h3>
+      <%= form_with model: [ @training_ground, @booking ], local: true do |form| %>
+        <% if @booking.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h4>
+            <ul>
+              <% @booking.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :player_name, "Your Name", class: "form-label" %>
+          <%= form.text_field :player_name, class: "form-control #{'is-invalid' if @booking.errors[:player_name].any?}" %>
+          <% @booking.errors[:player_name].each do |error| %>
+            <div class="invalid-feedback"><%= error %></div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :start_time, "Start Time", class: "form-label" %>
+          <%= form.datetime_local_field :start_time, class: "form-control #{'is-invalid' if @booking.errors[:start_time].any?}" %>
+          <% @booking.errors[:start_time].each do |error| %>
+            <div class="invalid-feedback"><%= error %></div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :end_time, "End Time", class: "form-label" %>
+          <%= form.datetime_local_field :end_time, class: "form-control #{'is-invalid' if @booking.errors[:end_time].any?}" %>
+          <% @booking.errors[:end_time].each do |error| %>
+            <div class="invalid-feedback"><%= error %></div>
+          <% end %>
+        </div>
+
+        <%= form.submit "Book Now", class: "btn btn-primary" %>
+      <% end %>
     </div>
 
     <div class="col-md-6">
