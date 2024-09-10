@@ -60,10 +60,10 @@
 
     <div class="col-md-6">
       <h2 class="mb-4">Location on Map</h2>
-      <% if @training_ground.location.latitude.present? && @training_ground.location.longtitude.present? %>
+      <% if @training_ground.location.latitude.present? && @training_ground.location.longitude.present? %>
         <div id="map" data-controller="map"
              data-map-latitude-value="<%= @training_ground.location.latitude %>"
-             data-map-longitude-value="<%= @training_ground.location.longtitude %>"
+             data-map-longitude-value="<%= @training_ground.location.longitude %>"
              data-map-name-value="<%= @training_ground.name %>"
              style="height: 400px; width: 100%;"></div>
       <% else %>

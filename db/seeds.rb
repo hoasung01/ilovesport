@@ -37,7 +37,7 @@ if Rails.env.development?
       city: Faker::Address.city,
       country: Faker::Address.country,
       latitude: Faker::Address.latitude,
-      longtitude: Faker::Address.longitude
+      longitude: Faker::Address.longitude
     )
   end
 
