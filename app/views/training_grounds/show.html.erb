@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="fw-bold"><%= @training_ground.name %></h1>
+      <p class="lead">Sport: <%= @training_ground.sport.name if @training_ground.sport %></p>
+      <p><strong>Location:</strong> <%= "#{@training_ground.location.address}, #{@training_ground.location.city}, #{@training_ground.location.country}" if @training_ground.location %></p>
+      <p><strong>Owned by:</strong> <%= @training_ground.facility_owner.email %></p>
+      <p class="mt-4"><strong>Bookings:</strong></p>
+      <ul class="list-group">
+        <% @training_ground.bookings.each do |booking| %>
+          <li class="list-group-item">
+            <%= booking.player_name %>: <%= booking.start_time.strftime('%F %T') %> to <%= booking.end_time.strftime('%F %T') %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="mb-4">Location on Map</h2>
+      <% if @training_ground.location.latitude.present? && @training_ground.location.longtitude.present? %>
+        <div id="map" data-controller="map"
+             data-map-latitude-value="<%= @training_ground.location.latitude %>"
+             data-map-longitude-value="<%= @training_ground.location.longtitude %>"
+             data-map-name-value="<%= @training_ground.name %>"
+             style="height: 400px; width: 100%;"></div>
+      <% else %>
+        <p>Location data not available.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

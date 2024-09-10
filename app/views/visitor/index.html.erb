@@ -51,7 +51,7 @@
               <p class="card-text">Location: <%= "#{ground.location.address}, #{ground.location.city}, #{ground.location.country}" if ground.location %></p>
               <div class="d-flex justify-content-between align-items-center mt-auto">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <%= link_to 'View', training_ground_path(ground), class: 'btn btn-sm btn-outline-secondary' %>
                 </div>
                 <small class="text-body-secondary">Available</small>
               </div>
